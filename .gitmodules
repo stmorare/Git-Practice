@@ -1,0 +1,9 @@
+[submodule "myapp"]
+	path = myapp
+	url = git@github.com:stmorare/myapp.git
+[submodule "KevinCookieCompany"]
+	path = KevinCookieCompany
+	url = git@github.com:stmorare/KevinCookieCompany.com.git
+[submodule "demo-repo"]
+	path = demo-repo
+	url = git@github.com:stmorare/demo-repo.git
