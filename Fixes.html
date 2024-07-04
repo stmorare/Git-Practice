@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIXES</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Troubleshooting Guide</h1>
+
+    <h2>Pushing Files to a Specific Branch</h2>
+    
+    <h3>1. Ensure All Changes are Merged</h3>
+    <p>First, ensure that any changes in the <code>master</code> branch are merged into the <code>main</code> branch.</p>
+    <pre><code>git checkout main
+git merge master</code></pre>
+
+    <h3>2. Push the <code>main</code> Branch to the Remote Repository</h3>
+    <p>Ensure your <code>main</code> branch is up-to-date on the remote repository:</p>
+    <pre><code>git push origin main</code></pre>
+
+    <h3>3. Change the Default Branch on GitHub</h3>
+    <p>Change the default branch to <code>main</code> on GitHub:</p>
+    <ol>
+        <li>Go to your repository on GitHub.</li>
+        <li>Click on the "Settings" tab.</li>
+        <li>In the left sidebar, click "Branches".</li>
+        <li>Under "Default branch", change the default branch to <code>main</code>.</li>
+    </ol>
+
+    <h3>4. Delete the <code>master</code> Branch Locally</h3>
+    <p>Once you're sure that the <code>main</code> branch is the default branch on GitHub and all changes have been merged:</p>
+    <pre><code>git branch -d master</code></pre>
+    <p>If <code>master</code> hasn't been fully merged into <code>main</code>, you might get a warning. If you're sure you want to delete it, use:</p>
+    <pre><code>git branch -D master</code></pre>
+
+    <h3>5. Delete the <code>master</code> Branch on GitHub</h3>
+    <p>Finally, delete the <code>master</code> branch from the remote repository:</p>
+    <pre><code>git push origin --delete master</code></pre>
+
+    <h2>Handling Non-Fast-Forward Errors</h2>
+    <h3>Fetch and Pull Changes</h3>
+    <p>Fetch the latest changes from the remote repository to update your local references:</p>
+    <pre><code>git fetch origin</code></pre>
+    <p>Merge the remote <code>main</code> branch into your local <code>main</code> branch:</p>
+    <pre><code>git pull origin main</code></pre>
+
+    <h3>Push Changes to the Remote Repository</h3>
+    <p>Push your local changes to the <code>main</code> branch on the remote repository:</p>
+    <pre><code>git push origin main</code></pre>
+
+    <h2>Handling "Refusing to Merge Unrelated Histories" Error</h2>
+    <h3>Pull with <code>--allow-unrelated-histories</code></h3>
+    <p>Use the <code>--allow-unrelated-histories</code> option with the <code>git pull</code> command:</p>
+    <pre><code>git pull origin main --allow-unrelated-histories</code></pre>
+
+    <h3>Resolve Any Merge Conflicts</h3>
+    <p>If there are any merge conflicts, Git will prompt you to resolve them. After resolving the conflicts, add the resolved files and commit the merge:</p>
+    <pre><code>git add .
+git commit -m "Merge with remote main, allowing unrelated histories"</code></pre>
+
+    <h3>Push the Changes to the Remote Repository</h3>
+    <p>Push the committed changes to the remote repository:</p>
+    <pre><code>git push origin main</code></pre>
+
+    <h3>Force Push (if necessary)</h3>
+    <p>If you want to force the push (overwriting the remote branch with your local branch), use:</p>
+    <pre><code>git push --force origin main</code></pre>
+    <p><strong>Note:</strong> Use <code>--force</code> with caution, as it can discard changes made by others on the remote branch.</p>
+</body>
+</html>
